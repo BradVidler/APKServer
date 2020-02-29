@@ -1,2 +1,4 @@
 # APKServer
-A Go server that replaces a tracking string in an apk with bash and then rebuilds, signs, and serves it.
+The Google Play store allows you to pass in referrer data to your app when a user downloads it, but how can we do this with an APK that is hosted on our own server? This project accomplishes this task without storing the data in a database and fingerprinting the user in order to lookup the data when they run the app. Instead, we use bash to hex edit a string, rebuild the app, resign it and then serve it using a simple go server.
+
+NOTE: This method probably won't work unless the string you are replacing is the same length every time. Having a different length string may cause issues when rebuilding/resigning the app during some integrity checks. A possible hack would be to have the string in your app the max possible length, then when replacing the string you can pad it with extra characters and remove them at run time in your app.
